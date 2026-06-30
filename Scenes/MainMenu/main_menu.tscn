@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://di3x3qpvh5605"]
+
+[ext_resource type="Script" uid="uid://dxfdgv5863q6w" path="res://Scenes/MainMenu/main_menu.gd" id="1_uqdog"]
+[ext_resource type="AudioStream" uid="uid://cjr75lgf3xcw5" path="res://Audios/Background/momiji no korankei.mp3" id="2_v763k"]
+[ext_resource type="Texture2D" uid="uid://d0lfetffxhkyx" path="res://Arts/Background/MainMenu/Wallpaper.jpg" id="3_wallpaper"]
+
+[node name="MainMenu" type="Control" unique_id=1086040262]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uqdog")
+
+[node name="Wallpaper" type="TextureRect" parent="." unique_id=-394967295]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_wallpaper")
+expand_mode = 1
+
+[node name="Background" type="ColorRect" parent="." unique_id=400339187]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.019607844, 0.019607844, 0.078431375, 0.4)
+
+[node name="TitleLabel" type="Label" parent="." unique_id=580124637]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -200)
+text = "PlanTH"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=54207622]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="StartButton" type="Button" parent="VBoxContainer" unique_id=392166021]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "开始游戏"
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer" unique_id=1234567890]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "继续游戏"
+
+[node name="SettingButton" type="Button" parent="VBoxContainer" unique_id=597586293]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "设置"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=2071977481]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "退出游戏"
+
+[node name="VersionLabel" type="Label" parent="." unique_id=-1284967286]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 50.0
+grow_horizontal = 0
+text = "v0.0.1"
+horizontal_alignment = 2
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=-1284967287]
+stream = ExtResource("2_v763k")
+autoplay = true
+
+[node name="QuitConfirmPanel" type="ColorRect" parent="." unique_id=-1184967296]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="QuitConfirmLabel" type="Label" parent="QuitConfirmPanel" unique_id=-1184967295]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -70.0
+offset_right = 120.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+text = "是否退出游戏？"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitYesButton" type="Button" parent="QuitConfirmPanel" unique_id=-1184967294]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = 20.0
+offset_right = -10.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "是"
+
+[node name="QuitNoButton" type="Button" parent="QuitConfirmPanel" unique_id=-1184967293]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "否"

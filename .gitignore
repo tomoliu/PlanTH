@@ -1,0 +1,18 @@
+# Godot
+.godot/
+*.uid
+export/
+*.import
+!*.tscn.uid
+
+# Build outputs
+*.pck
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# User config (keep per-machine)
+config.ini

@@ -1,0 +1,140 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Settings/settings_menu.gd" id="1_script"]
+
+[node name="SettingsMenu" type="Control" unique_id=7010000000]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="." unique_id=7010000001]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.019607844, 0.019607844, 0.078431375, 1)
+
+[node name="TitleLabel" type="Label" parent="." unique_id=7010000002]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 30.0
+offset_right = 100.0
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "设置"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsContainer" type="VBoxContainer" parent="." unique_id=7010000003]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -160.0
+offset_right = 240.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="ResolutionRow" type="HBoxContainer" parent="SettingsContainer" unique_id=7010000004]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ResolutionLabel" type="Label" parent="SettingsContainer/ResolutionRow" unique_id=7010000005]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 30)
+text = "分辨率"
+vertical_alignment = 1
+
+[node name="ResolutionDropdown" type="OptionButton" parent="SettingsContainer/ResolutionRow" unique_id=7010000006]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 6
+text = "1400x900"
+
+[node name="WindowModeRow" type="HBoxContainer" parent="SettingsContainer" unique_id=7010000007]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="WindowModeLabel" type="Label" parent="SettingsContainer/WindowModeRow" unique_id=7010000008]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 30)
+text = "窗口模式"
+vertical_alignment = 1
+
+[node name="WindowModeButtons" type="HBoxContainer" parent="SettingsContainer/WindowModeRow" unique_id=7010000009]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 0
+
+[node name="FullscreenBtn" type="Button" parent="SettingsContainer/WindowModeRow/WindowModeButtons" unique_id=7010000010]
+layout_mode = 2
+text = "全屏"
+
+[node name="BorderlessBtn" type="Button" parent="SettingsContainer/WindowModeRow/WindowModeButtons" unique_id=7010000011]
+layout_mode = 2
+text = "无边框"
+
+[node name="WindowedBtn" type="Button" parent="SettingsContainer/WindowModeRow/WindowModeButtons" unique_id=7010000012]
+layout_mode = 2
+text = "窗口"
+
+[node name="VsyncRow" type="HBoxContainer" parent="SettingsContainer" unique_id=7010000013]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VsyncLabel" type="Label" parent="SettingsContainer/VsyncRow" unique_id=7010000014]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 30)
+text = "垂直同步"
+vertical_alignment = 1
+
+[node name="VsyncCheck" type="CheckBox" parent="SettingsContainer/VsyncRow" unique_id=7010000015]
+layout_mode = 2
+button_pressed = true
+
+[node name="KeybindRow" type="HBoxContainer" parent="SettingsContainer" unique_id=7010000020]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="KeybindLabel" type="Label" parent="SettingsContainer/KeybindRow" unique_id=7010000021]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 30)
+text = "控制器"
+vertical_alignment = 1
+
+[node name="KeybindButton" type="Button" parent="SettingsContainer/KeybindRow" unique_id=7010000022]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "按键设置..."
+
+[node name="ButtonsRow" type="HBoxContainer" parent="SettingsContainer" unique_id=7010000016]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="SettingsContainer/ButtonsRow" unique_id=7010000017]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 36)
+text = "取消"
+
+[node name="SaveButton" type="Button" parent="SettingsContainer/ButtonsRow" unique_id=7010000018]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 36)
+text = "保存"

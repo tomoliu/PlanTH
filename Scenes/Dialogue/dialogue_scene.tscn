@@ -1,0 +1,134 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Dialogue/dialogue_scene.gd" id="1_script"]
+
+[node name="DialogueScene" type="Control" unique_id=5010000000]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="." unique_id=5010000001]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.02, 0.08, 1)
+
+[node name="GearButton" type="Button" parent="." unique_id=5010000002]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 56.0
+grow_horizontal = 0
+text = "⚙"
+theme_override_font_sizes/font_size = 24
+
+[node name="MenuPanel" type="ColorRect" parent="." unique_id=5010000003]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 16.0
+offset_right = 280.0
+offset_bottom = 316.0
+grow_horizontal = 0
+color = Color(0, 0, 0, 0.85)
+
+[node name="MenuVBox" type="VBoxContainer" parent="MenuPanel" unique_id=5010000004]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="ContinueButton" type="Button" parent="MenuPanel/MenuVBox" unique_id=5010000005]
+layout_mode = 2
+text = "继续"
+
+[node name="InventoryButton" type="Button" parent="MenuPanel/MenuVBox" unique_id=5010000006]
+layout_mode = 2
+text = "查看背包"
+
+[node name="SettingsButton" type="Button" parent="MenuPanel/MenuVBox" unique_id=5010000007]
+layout_mode = 2
+text = "设置"
+
+[node name="ReturnToMenuButton" type="Button" parent="MenuPanel/MenuVBox" unique_id=5010000008]
+layout_mode = 2
+text = "返回主菜单"
+
+[node name="ExitGameButton" type="Button" parent="MenuPanel/MenuVBox" unique_id=5010000009]
+layout_mode = 2
+text = "退出游戏"
+
+[node name="DialoguePanel" type="ColorRect" parent="." unique_id=5010000010]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = -220.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 0.8)
+
+[node name="SpeakerName" type="Label" parent="DialoguePanel" unique_id=5010000011]
+layout_mode = 1
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 300.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 24
+text = "神秘人"
+vertical_alignment = 1
+
+[node name="DialogueText" type="Label" parent="DialoguePanel" unique_id=5010000012]
+layout_mode = 1
+offset_left = 24.0
+offset_top = 56.0
+offset_right = -24.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 18
+text = "这里是对话文本的占位内容..."
+autowrap_mode = 3
+
+[node name="ChoicesVBox" type="VBoxContainer" parent="DialoguePanel" unique_id=5010000013]
+layout_mode = 1
+offset_left = 24.0
+offset_top = 120.0
+offset_right = -24.0
+offset_bottom = -16.0
+theme_override_constants/separation = 8
+
+[node name="Choice1" type="Button" parent="DialoguePanel/ChoicesVBox" unique_id=5010000014]
+layout_mode = 2
+text = "选项一：占位文本。"
+alignment = 0
+
+[node name="Choice2" type="Button" parent="DialoguePanel/ChoicesVBox" unique_id=5010000015]
+layout_mode = 2
+text = "选项二：占位文本。"
+alignment = 0
+
+[node name="Choice3" type="Button" parent="DialoguePanel/ChoicesVBox" unique_id=5010000016]
+layout_mode = 2
+text = "选项三：占位文本。"
+alignment = 0

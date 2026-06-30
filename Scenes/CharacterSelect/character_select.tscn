@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://cnw1gjiu04dlt"]
+
+[ext_resource type="Script" uid="uid://drldeqwws3we0" path="res://Scenes/CharacterSelect/character_select.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bdmydqnslrdmp" path="res://Arts/Character/SelectCharacter/Reimu.jpg" id="2_default_bg"]
+
+[node name="CharacterSelect" type="Control" unique_id=-284967296]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="BackgroundTexture" type="TextureRect" parent="." unique_id=-284967295]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_default_bg")
+expand_mode = 1
+
+[node name="TopBar" type="HBoxContainer" parent="." unique_id=-284967294]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 70.0
+grow_horizontal = 2
+
+[node name="BackButton" type="Button" parent="TopBar" unique_id=-284967293]
+layout_mode = 2
+text = "返回"
+
+[node name="Spacer" type="Control" parent="TopBar" unique_id=-284967292]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DepartButton" type="Button" parent="TopBar" unique_id=-284967291]
+layout_mode = 2
+text = "出发"
+
+[node name="InfoPanelBackground" type="ColorRect" parent="." unique_id=-284967290]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 80.0
+offset_right = 460.0
+offset_bottom = -80.0
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="InfoPanel" type="VBoxContainer" parent="." unique_id=-284967289]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 100.0
+offset_right = 440.0
+offset_bottom = -100.0
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="CharacterName" type="Label" parent="InfoPanel" unique_id=-284967288]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "角色名称"
+vertical_alignment = 1
+
+[node name="StatsRow" type="HBoxContainer" parent="InfoPanel" unique_id=-284967287]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HpLabel" type="Label" parent="InfoPanel/StatsRow" unique_id=-284967286]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "❤ 75/75"
+vertical_alignment = 1
+
+[node name="GoldLabel" type="Label" parent="InfoPanel/StatsRow" unique_id=-284967285]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "💰 99"
+vertical_alignment = 1
+
+[node name="DifficultySection" type="VBoxContainer" parent="InfoPanel" unique_id=4010000100]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DifficultyLabel" type="Label" parent="InfoPanel/DifficultySection" unique_id=4010000101]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "难度"
+vertical_alignment = 1
+
+[node name="DifficultyButtons" type="HBoxContainer" parent="InfoPanel/DifficultySection" unique_id=4010000102]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 0
+
+[node name="DifficultyEasy" type="Button" parent="InfoPanel/DifficultySection/DifficultyButtons" unique_id=4010000103]
+layout_mode = 2
+text = "简单"
+
+[node name="DifficultyNormal" type="Button" parent="InfoPanel/DifficultySection/DifficultyButtons" unique_id=4010000104]
+layout_mode = 2
+text = "普通"
+
+[node name="DifficultyHard" type="Button" parent="InfoPanel/DifficultySection/DifficultyButtons" unique_id=4010000105]
+layout_mode = 2
+text = "困难"
+
+[node name="DifficultyHell" type="Button" parent="InfoPanel/DifficultySection/DifficultyButtons" unique_id=4010000106]
+layout_mode = 2
+text = "地狱"
+
+[node name="DescriptionLabel" type="Label" parent="InfoPanel" unique_id=-284967284]
+custom_maximum_size = Vector2(500, 500)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "角色描述占位文本。"
+autowrap_mode = 3
+
+[node name="AbilityLabel" type="Label" parent="InfoPanel" unique_id=-284967283]
+custom_maximum_size = Vector2(500, 500)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "角色能力占位文本。"
+autowrap_mode = 3
+
+[node name="ThumbnailContainer" type="HBoxContainer" parent="." unique_id=-284967282]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -120.0
+offset_right = 200.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="CharacterThumb1" type="Button" parent="ThumbnailContainer" unique_id=-284967281]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "灵梦"
+
+[node name="CharacterThumb2" type="Button" parent="ThumbnailContainer" unique_id=-284967280]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "魔理沙"

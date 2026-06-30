@@ -1,0 +1,14 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": "灵梦",
+      "lobby_background": "Arts/Character/SelectCharacter/Reimu.jpg"
+    },
+    {
+      "id": 2,
+      "name": "魔理沙",
+      "lobby_background": "Arts/Character/SelectCharacter/Marisa.jpg"
+    }
+  ]
+}

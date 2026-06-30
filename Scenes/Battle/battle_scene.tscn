@@ -1,0 +1,72 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Battle/battle_scene.gd" id="1_script"]
+
+[node name="BattleScene" type="Control" unique_id=6010000000]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="." unique_id=6010000001]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.06, 0.12, 1)
+
+[node name="PlayerIndicator" type="Label" parent="." unique_id=6010000002]
+layout_mode = 0
+theme_override_font_sizes/font_size = 48
+text = "★"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Instructions" type="Label" parent="." unique_id=6010000003]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+text = "WASD — 移动 | 躲避 ⚡"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmitterTL" type="Label" parent="." unique_id=6010000004]
+layout_mode = 0
+theme_override_font_sizes/font_size = 36
+text = "⚡"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmitterTR" type="Label" parent="." unique_id=6010000005]
+layout_mode = 0
+theme_override_font_sizes/font_size = 36
+text = "⚡"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmitterBL" type="Label" parent="." unique_id=6010000006]
+layout_mode = 0
+theme_override_font_sizes/font_size = 36
+text = "⚡"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmitterBR" type="Label" parent="." unique_id=6010000007]
+layout_mode = 0
+theme_override_font_sizes/font_size = 36
+text = "⚡"
+horizontal_alignment = 1
+vertical_alignment = 1

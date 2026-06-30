@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bnq4eutdrcu2h"]
+
+[ext_resource type="Script" uid="uid://u7gobj5rl7is" path="res://Scenes/BeginPlay/boundary_logo.gd" id="1_41cd1"]
+[ext_resource type="Texture2D" uid="uid://upsids057jfr" path="res://Arts/Icon/BeginPlay/icon.svg" id="2_mne4n"]
+
+[node name="BoundaryLogo" type="Control" unique_id=2050545343]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_41cd1")
+
+[node name="Background" type="ColorRect" parent="." unique_id=-1284967295]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.019607844, 0.019607844, 0.078431375, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=-1284967294]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=-1284967293]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="BoundaryLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=-1284967292]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "Boundary"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SeparatorLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=-1284967291]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GodotRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=-1284967290]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="GodotIcon" type="TextureRect" parent="CenterContainer/VBoxContainer/GodotRow" unique_id=-1284967289]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_mne4n")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="GodotLabel" type="Label" parent="CenterContainer/VBoxContainer/GodotRow" unique_id=-1284967288]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "GODOT"
+horizontal_alignment = 1
+vertical_alignment = 1
