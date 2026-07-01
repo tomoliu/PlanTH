@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bnq4eutdrcu2h"]
 
-[ext_resource type="Script" uid="uid://hbaot5d103w1" path="res://Scenes/BeginPlay/boundary_logo.gd" id="1_jb0os"]
-[ext_resource type="Texture2D" uid="uid://drqdm7ycbt4e2" path="res://Arts/Icon/BeginPlay/icon.svg" id="2_mne4n"]
+[ext_resource type="Script" uid="uid://u7gobj5rl7is" path="res://Scenes/BeginPlay/boundary_logo.gd" id="1_jb0os"]
+[ext_resource type="Texture2D" uid="uid://upsids057jfr" path="res://Arts/Icon/BeginPlay/icon.svg" id="2_mne4n"]
 
 [node name="BoundaryLogo" type="Control" unique_id=132644659]
 layout_mode = 3

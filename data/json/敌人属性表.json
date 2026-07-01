@@ -1,0 +1,13 @@
+{
+  "enemies": [
+    {
+      "id": 1,
+      "name": "普通敌人",
+      "speed": 240.0,
+      "hp": 3,
+      "fire_interval": 2.0,
+      "contact_damage": 1,
+      "bullet_speed": 250.0
+    }
+  ]
+}

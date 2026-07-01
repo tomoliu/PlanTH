@@ -1,0 +1,18 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": "灵梦",
+      "lobby_background": "res://Arts/Character/SelectCharacter/Reimu.jpg",
+      "initial_hp": 6,
+      "initial_gold": 40
+    },
+    {
+      "id": 2,
+      "name": "魔理沙",
+      "lobby_background": "res://Arts/Character/SelectCharacter/Marisa.jpg",
+      "initial_hp": 5,
+      "initial_gold": 60
+    }
+  ]
+}

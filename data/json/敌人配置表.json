@@ -1,0 +1,59 @@
+{
+  "levels": [
+    {
+      "difficulty": 0,
+      "enemy_count": 1,
+      "condition": "默认"
+    },
+    {
+      "difficulty": 1,
+      "enemy_count": 2,
+      "condition": "条件1：待编写"
+    },
+    {
+      "difficulty": 2,
+      "enemy_count": 3,
+      "condition": "条件2：待编写"
+    },
+    {
+      "difficulty": 3,
+      "enemy_count": 4,
+      "condition": "条件3：待编写"
+    },
+    {
+      "difficulty": 4,
+      "enemy_count": 5,
+      "condition": "条件4：待编写"
+    },
+    {
+      "difficulty": 5,
+      "enemy_count": 6,
+      "condition": "条件5：待编写"
+    },
+    {
+      "difficulty": 6,
+      "enemy_count": 7,
+      "condition": "条件6：待编写"
+    },
+    {
+      "difficulty": 7,
+      "enemy_count": 8,
+      "condition": "条件7：待编写"
+    },
+    {
+      "difficulty": 8,
+      "enemy_count": 9,
+      "condition": "条件8：待编写"
+    },
+    {
+      "difficulty": 9,
+      "enemy_count": 10,
+      "condition": "条件9：待编写"
+    },
+    {
+      "difficulty": 10,
+      "enemy_count": 11,
+      "condition": "条件10：待编写"
+    }
+  ]
+}

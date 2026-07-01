@@ -20,6 +20,7 @@ config/icon="res://Arts/Icon/BeginPlay/icon.svg"
 [autoload]
 
 ConfigManager="*res://Scenes/Config/config_manager.gd"
+SaveManager="*res://Scenes/Config/save_manager.gd"
 
 [display]
 
@@ -33,7 +34,7 @@ window/stretch/mode="canvas_items"
 
 [rendering]
 
-rendering/environment/defaults/default_clear_color=Color(0.019607844, 0.019607844, 0.078431375, 1)
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+rendering/environment/defaults/default_clear_color=Color(0.019607844, 0.019607844, 0.078431375, 1)

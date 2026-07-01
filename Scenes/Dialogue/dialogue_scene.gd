@@ -25,6 +25,11 @@ func _ready() -> void:
 	choice_2.pressed.connect(_on_exit_game)
 	choice_3.pressed.connect(_on_enter_battle)
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("gm_toggle"):
+		get_viewport().set_input_as_handled()
+		ConfigManager.gm_toggled.emit()
+
 func _toggle_menu() -> void:
 	menu_panel.visible = not menu_panel.visible
 

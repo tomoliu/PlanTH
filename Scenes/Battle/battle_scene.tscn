@@ -36,6 +36,15 @@ offset_bottom = 56.0
 theme_override_font_sizes/font_size = 28
 text = "Score: 0"
 
+[node name="HPLabel" type="Label" parent="." unique_id=6020000020]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 56.0
+offset_right = 250.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 24
+text = "❤ 6/6"
+
 [node name="GMButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 2
@@ -72,7 +81,43 @@ offset_bottom = 48.0
 grow_horizontal = 0
 text = "✕"
 
-[node name="InvincibleButton" type="Button" parent="GMPanel"]
+[node name="GMGrid" type="GridContainer" parent="GMPanel" unique_id=6020000035]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -40.0
+offset_right = 260.0
+offset_bottom = 40.0
+columns = 5
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="InvincibleButton" type="Button" parent="GMPanel/GMGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "开启玩家无敌"
+
+[node name="GMDiffIncrease" type="Button" parent="GMPanel/GMGrid" unique_id=6020000030]
+layout_mode = 2
+text = "增加存档难度等级"
+
+[node name="GMDiffDecrease" type="Button" parent="GMPanel/GMGrid" unique_id=6020000031]
+layout_mode = 2
+text = "降低存档难度等级"
+
+[node name="PausePanel" type="ColorRect" parent="." unique_id=6020000040]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.5)
+
+[node name="PauseVBox" type="VBoxContainer" parent="PausePanel" unique_id=6020000041]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -80,13 +125,33 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -100.0
-offset_top = -25.0
+offset_top = -60.0
 offset_right = 100.0
-offset_bottom = 25.0
+offset_bottom = 60.0
+theme_override_constants/separation = 16
+
+[node name="ResumeBtn" type="Button" parent="PausePanel/PauseVBox" unique_id=6020000042]
+layout_mode = 2
+text = "返回游戏"
+
+[node name="ReturnMenuBtn" type="Button" parent="PausePanel/PauseVBox" unique_id=6020000043]
+layout_mode = 2
+text = "返回主菜单"
+
+[node name="ToastContainer" type="VBoxContainer" parent="." unique_id=6020000050]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = -10.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 18
-text = "开启玩家无敌"
+theme_override_constants/separation = 4
+alignment = 1
 
 [node name="Instructions" type="Label" parent="." unique_id=6010000003]
 layout_mode = 1
@@ -100,34 +165,6 @@ offset_right = 200.0
 offset_bottom = 50.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 16
-text = "WASD — 移动 | 躲避 ⚡"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="EmitterTL" type="Label" parent="." unique_id=6010000004]
-layout_mode = 0
-theme_override_font_sizes/font_size = 36
-text = "⚡"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="EmitterTR" type="Label" parent="." unique_id=6010000005]
-layout_mode = 0
-theme_override_font_sizes/font_size = 36
-text = "⚡"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="EmitterBL" type="Label" parent="." unique_id=6010000006]
-layout_mode = 0
-theme_override_font_sizes/font_size = 36
-text = "⚡"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="EmitterBR" type="Label" parent="." unique_id=6010000007]
-layout_mode = 0
-theme_override_font_sizes/font_size = 36
-text = "⚡"
+text = "WASD — 移动 | 躲避敌人"
 horizontal_alignment = 1
 vertical_alignment = 1

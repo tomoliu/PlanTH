@@ -97,6 +97,169 @@ grow_horizontal = 0
 text = "v0.0.1"
 horizontal_alignment = 2
 
+[node name="SaveSwitchButton" type="Button" parent="." unique_id=3120000000]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 50.0
+text = "存档 1"
+
+[node name="SaveSlotPanel" type="ColorRect" parent="." unique_id=3120000001]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="SaveSlotVBox" type="VBoxContainer" parent="SaveSlotPanel" unique_id=3120000002]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="SlotTitle" type="Label" parent="SaveSlotPanel/SaveSlotVBox" unique_id=3120000003]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "选择存档"
+horizontal_alignment = 1
+
+[node name="Slot1Btn" type="Button" parent="SaveSlotPanel/SaveSlotVBox" unique_id=3120000004]
+layout_mode = 2
+text = "存档 1"
+
+[node name="Slot2Btn" type="Button" parent="SaveSlotPanel/SaveSlotVBox" unique_id=3120000005]
+layout_mode = 2
+text = "存档 2"
+
+[node name="Slot3Btn" type="Button" parent="SaveSlotPanel/SaveSlotVBox" unique_id=3120000006]
+layout_mode = 2
+text = "存档 3"
+
+[node name="SlotCancelBtn" type="Button" parent="SaveSlotPanel/SaveSlotVBox" unique_id=3120000007]
+layout_mode = 2
+text = "返回"
+
+[node name="SaveConfirmPanel" type="ColorRect" parent="." unique_id=3120000010]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.5)
+
+[node name="ConfirmLabel" type="Label" parent="SaveConfirmPanel" unique_id=3120000011]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -70.0
+offset_right = 150.0
+offset_bottom = -30.0
+theme_override_font_sizes/font_size = 20
+text = "是否切换到存档 1？"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmYesBtn" type="Button" parent="SaveConfirmPanel" unique_id=3120000012]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = 20.0
+offset_right = -10.0
+offset_bottom = 56.0
+text = "确认"
+
+[node name="ConfirmNoBtn" type="Button" parent="SaveConfirmPanel" unique_id=3120000013]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 56.0
+text = "取消"
+
+[node name="GMPanel" type="ColorRect" parent="." unique_id=3120000020]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="GMCloseBtn" type="Button" parent="GMPanel" unique_id=3120000021]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -48.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 48.0
+grow_horizontal = 0
+text = "✕"
+
+[node name="GMGrid" type="GridContainer" parent="GMPanel" unique_id=3120000022]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -40.0
+offset_right = 260.0
+offset_bottom = 40.0
+columns = 5
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="GMIncreaseBtn" type="Button" parent="GMPanel/GMGrid" unique_id=3120000023]
+layout_mode = 2
+text = "增加存档难度等级"
+
+[node name="GMDecreaseBtn" type="Button" parent="GMPanel/GMGrid" unique_id=3120000024]
+layout_mode = 2
+text = "降低存档难度等级"
+
+[node name="ToastContainer" type="VBoxContainer" parent="." unique_id=3120000030]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = -10.0
+theme_override_constants/separation = 4
+alignment = 1
+
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=-1284967287]
 stream = ExtResource("2_v763k")
 autoplay = true

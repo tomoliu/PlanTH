@@ -7,10 +7,34 @@ var resolution: Vector2i = Vector2i(1400, 900)
 var window_mode: int = DisplayServer.WINDOW_MODE_WINDOWED
 var vsync_enabled: bool = true
 
+## 角色选择传递的战斗初始值。
+var player_initial_hp: int = 6
+var player_initial_gold: int = 40
+var selected_difficulty: int = 0
+
+## 继续游戏：记录上次所在关卡场景路径
+var last_scene_path: String = ""
+
+## 执行 GM 难度增加并弹出反馈
+func gm_increase_difficulty() -> void:
+	SaveManager.increase_difficulty()
+	toast_shown.emit("难度提升至 %d" % SaveManager.difficulty_level)
+
+## 执行 GM 难度降低并弹出反馈
+func gm_decrease_difficulty() -> void:
+	SaveManager.decrease_difficulty()
+	toast_shown.emit("难度降低至 %d" % SaveManager.difficulty_level)
+
+## GM 面板的显示状态切换信号
+signal gm_toggled
+## GM 命令执行成功的吐司提示
+signal toast_shown(msg: String)
+
 func _ready() -> void:
 	_setup_default_input_actions()
 	_load_config()
 	_apply_display()
+	# _input 处理改为各 Control 场景自行监听
 
 ## 确保基础输入动作存在，缺失则用默认映射创建。
 func _setup_default_input_actions() -> void:
@@ -40,6 +64,10 @@ func _setup_default_input_actions() -> void:
 			_create_joypad_axis_event(JOY_AXIS_LEFT_X, 1.0),
 		],
 	}
+	# GM 面板快捷键
+	if not InputMap.has_action("gm_toggle"):
+		InputMap.add_action("gm_toggle")
+		InputMap.action_add_event("gm_toggle", _create_key_event(KEY_BACKSLASH))
 	for action: String in defaults:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action, 0.5)

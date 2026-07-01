@@ -88,36 +88,55 @@ theme_override_font_sizes/font_size = 24
 text = "💰 99"
 vertical_alignment = 1
 
-[node name="DifficultySection" type="VBoxContainer" parent="InfoPanel" unique_id=4010000100]
-layout_mode = 2
+[node name="DifficultyBar" type="HBoxContainer" parent="." unique_id=4030000000]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = -40.0
+offset_right = 120.0
+offset_bottom = -5.0
+grow_horizontal = 2
 theme_override_constants/separation = 8
+alignment = 1
 
-[node name="DifficultyLabel" type="Label" parent="InfoPanel/DifficultySection" unique_id=4010000101]
+[node name="DifficultyLeftArrow" type="Button" parent="DifficultyBar" unique_id=4030000001]
 layout_mode = 2
+custom_minimum_size = Vector2(30, 30)
+text = "◀"
+theme_override_font_sizes/font_size = 18
+
+[node name="DifficultyLabel" type="Label" parent="DifficultyBar" unique_id=4030000002]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 30)
 theme_override_font_sizes/font_size = 20
-text = "难度"
+text = "难度 0"
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DifficultyButtons" type="HBoxContainer" parent="InfoPanel/DifficultySection" unique_id=4010000102]
+[node name="DifficultyRightArrow" type="Button" parent="DifficultyBar" unique_id=4030000003]
 layout_mode = 2
-theme_override_constants/separation = 8
-alignment = 0
+custom_minimum_size = Vector2(30, 30)
+text = "▶"
+theme_override_font_sizes/font_size = 18
 
-[node name="DifficultyEasy" type="Button" parent="InfoPanel/DifficultySection/DifficultyButtons" unique_id=4010000103]
-layout_mode = 2
-text = "简单"
-
-[node name="DifficultyNormal" type="Button" parent="InfoPanel/DifficultySection/DifficultyButtons" unique_id=4010000104]
-layout_mode = 2
-text = "普通"
-
-[node name="DifficultyHard" type="Button" parent="InfoPanel/DifficultySection/DifficultyButtons" unique_id=4010000105]
-layout_mode = 2
-text = "困难"
-
-[node name="DifficultyHell" type="Button" parent="InfoPanel/DifficultySection/DifficultyButtons" unique_id=4010000106]
-layout_mode = 2
-text = "地狱"
+[node name="DifficultyDesc" type="Label" parent="." unique_id=4030000020]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 18.0
+offset_right = 300.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 14
+text = ""
+horizontal_alignment = 1
 
 [node name="DescriptionLabel" type="Label" parent="InfoPanel" unique_id=-284967284]
 custom_maximum_size = Vector2(500, 500)
@@ -158,3 +177,62 @@ text = "灵梦"
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 text = "魔理沙"
+
+[node name="GMPanel" type="ColorRect" parent="." unique_id=4030000100]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="GMCloseBtn" type="Button" parent="GMPanel" unique_id=4030000101]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -48.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 48.0
+grow_horizontal = 0
+text = "✕"
+
+[node name="GMGrid" type="GridContainer" parent="GMPanel" unique_id=4030000102]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -40.0
+offset_right = 260.0
+offset_bottom = 40.0
+columns = 5
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="GMIncreaseBtn" type="Button" parent="GMPanel/GMGrid" unique_id=4030000103]
+layout_mode = 2
+text = "增加存档难度等级"
+
+[node name="GMDecreaseBtn" type="Button" parent="GMPanel/GMGrid" unique_id=4030000104]
+layout_mode = 2
+text = "降低存档难度等级"
+
+[node name="ToastContainer" type="VBoxContainer" parent="." unique_id=4030000110]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = -10.0
+grow_horizontal = 2
+theme_override_constants/separation = 4
+alignment = 1
