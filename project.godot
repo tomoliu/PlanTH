@@ -17,6 +17,10 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://Arts/Icon/BeginPlay/icon.svg"
 
+[autoload]
+
+ConfigManager="*res://Scenes/Config/config_manager.gd"
+
 [display]
 
 window/size/viewport_width=1280
@@ -29,10 +33,7 @@ window/stretch/mode="canvas_items"
 
 [rendering]
 
+rendering/environment/defaults/default_clear_color=Color(0.019607844, 0.019607844, 0.078431375, 1)
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-
-[autoload]
-
-ConfigManager="*res://Scenes/Config/config_manager.gd"
