@@ -125,14 +125,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -100.0
-offset_top = -60.0
+offset_top = -90.0
 offset_right = 100.0
-offset_bottom = 60.0
+offset_bottom = 90.0
 theme_override_constants/separation = 16
 
 [node name="ResumeBtn" type="Button" parent="PausePanel/PauseVBox" unique_id=6020000042]
 layout_mode = 2
 text = "返回游戏"
+
+[node name="GiveUpBtn" type="Button" parent="PausePanel/PauseVBox"]
+layout_mode = 2
+text = "放弃"
 
 [node name="ReturnMenuBtn" type="Button" parent="PausePanel/PauseVBox" unique_id=6020000043]
 layout_mode = 2
@@ -168,3 +172,125 @@ theme_override_font_sizes/font_size = 16
 text = "WASD — 移动 | 躲避敌人"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="GameOverPanel" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="ConfirmVBox" type="VBoxContainer" parent="GameOverPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -60.0
+offset_right = 120.0
+offset_bottom = 60.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ConfirmLabel" type="Label" parent="GameOverPanel/ConfirmVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "是否重新开始本关？"
+horizontal_alignment = 1
+
+[node name="CountdownLabel" type="Label" parent="GameOverPanel/ConfirmVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1, 0.7, 0.3, 1)
+text = ""
+horizontal_alignment = 1
+
+[node name="ConfirmHBox" type="HBoxContainer" parent="GameOverPanel/ConfirmVBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="ConfirmYesBtn" type="Button" parent="GameOverPanel/ConfirmVBox/ConfirmHBox"]
+custom_minimum_size = Vector2(110, 44)
+layout_mode = 2
+text = "是"
+
+[node name="ConfirmNoBtn" type="Button" parent="GameOverPanel/ConfirmVBox/ConfirmHBox"]
+custom_minimum_size = Vector2(110, 44)
+layout_mode = 2
+text = "否"
+
+[node name="ResultVBox" type="VBoxContainer" parent="GameOverPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -140.0
+offset_right = 260.0
+offset_bottom = 140.0
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="PlayerInfoHBox" type="HBoxContainer" parent="GameOverPanel/ResultVBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="ResultScoreLabel" type="Label" parent="GameOverPanel/ResultVBox/PlayerInfoHBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "得分: 0"
+
+[node name="ResultHPLabel" type="Label" parent="GameOverPanel/ResultVBox/PlayerInfoHBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "HP: 0"
+
+[node name="ResultDiffLabel" type="Label" parent="GameOverPanel/ResultVBox/PlayerInfoHBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "难度: 0"
+
+[node name="SlotsHBox" type="HBoxContainer" parent="GameOverPanel/ResultVBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Slot1" type="Panel" parent="GameOverPanel/ResultVBox/SlotsHBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Slot2" type="Panel" parent="GameOverPanel/ResultVBox/SlotsHBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Slot3" type="Panel" parent="GameOverPanel/ResultVBox/SlotsHBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="ActionHBox" type="HBoxContainer" parent="GameOverPanel/ResultVBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="RestartBtn" type="Button" parent="GameOverPanel/ResultVBox/ActionHBox"]
+custom_minimum_size = Vector2(120, 44)
+layout_mode = 2
+text = "重新开始"
+
+[node name="NewGameBtn" type="Button" parent="GameOverPanel/ResultVBox/ActionHBox"]
+custom_minimum_size = Vector2(120, 44)
+layout_mode = 2
+text = "新游戏"
+
+[node name="ReturnMenuBtn" type="Button" parent="GameOverPanel/ResultVBox/ActionHBox"]
+custom_minimum_size = Vector2(120, 44)
+layout_mode = 2
+text = "返回主菜单"

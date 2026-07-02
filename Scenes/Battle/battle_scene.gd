@@ -26,8 +26,21 @@ const _ENEMY_ATTR_PATH: String = "res://data/json/敌人属性表.json"
 @onready var gm_diff_decrease: Button = $GMPanel/GMGrid/GMDiffDecrease
 @onready var pause_panel: ColorRect = $PausePanel
 @onready var resume_btn: Button = $PausePanel/PauseVBox/ResumeBtn
+@onready var give_up_btn: Button = $PausePanel/PauseVBox/GiveUpBtn
 @onready var return_menu_btn: Button = $PausePanel/PauseVBox/ReturnMenuBtn
 @onready var toast_container: VBoxContainer = $ToastContainer
+@onready var game_over_panel: ColorRect = $GameOverPanel
+@onready var confirm_vbox: VBoxContainer = $GameOverPanel/ConfirmVBox
+@onready var confirm_yes_btn: Button = $GameOverPanel/ConfirmVBox/ConfirmHBox/ConfirmYesBtn
+@onready var confirm_no_btn: Button = $GameOverPanel/ConfirmVBox/ConfirmHBox/ConfirmNoBtn
+@onready var countdown_label: Label = $GameOverPanel/ConfirmVBox/CountdownLabel
+@onready var result_vbox: VBoxContainer = $GameOverPanel/ResultVBox
+@onready var result_score_label: Label = $GameOverPanel/ResultVBox/PlayerInfoHBox/ResultScoreLabel
+@onready var result_hp_label: Label = $GameOverPanel/ResultVBox/PlayerInfoHBox/ResultHPLabel
+@onready var result_diff_label: Label = $GameOverPanel/ResultVBox/PlayerInfoHBox/ResultDiffLabel
+@onready var restart_btn: Button = $GameOverPanel/ResultVBox/ActionHBox/RestartBtn
+@onready var new_game_btn: Button = $GameOverPanel/ResultVBox/ActionHBox/NewGameBtn
+@onready var gameover_menu_btn: Button = $GameOverPanel/ResultVBox/ActionHBox/ReturnMenuBtn
 
 var _player_position: Vector2 = Vector2.ZERO
 var _player_hp: int = 6
@@ -46,6 +59,10 @@ var _enemy_count: int = 0
 var _enemy_positions: Array[Vector2] = []
 var _enemy_fire_cooldowns: Array[float] = []
 var _enemy_hp: Array[int] = []
+var _enemy_contact_cooldowns: Array[float] = []
+var _gameover_countdown: float = 10.0
+var _pause_buttons: Array[Button] = []
+var _pause_index: int = 0
 
 func _ready() -> void:
 	$Background.queue_free()
@@ -63,7 +80,15 @@ func _ready() -> void:
 	gm_diff_decrease.pressed.connect(ConfigManager.gm_decrease_difficulty)
 	ConfigManager.toast_shown.connect(_show_toast)
 	resume_btn.pressed.connect(_resume_game)
+	give_up_btn.pressed.connect(_on_give_up)
 	return_menu_btn.pressed.connect(_return_to_menu_from_pause)
+	_pause_buttons = [resume_btn, give_up_btn, return_menu_btn]
+	_pause_index = 0
+	confirm_yes_btn.pressed.connect(_on_gameover_yes)
+	confirm_no_btn.pressed.connect(_on_gameover_no)
+	restart_btn.pressed.connect(_on_gameover_restart)
+	new_game_btn.pressed.connect(_on_gameover_new_game)
+	gameover_menu_btn.pressed.connect(_on_gameover_return_menu)
 	gm_panel.hide()
 	
 	ConfigManager.last_scene_path = "res://Scenes/Battle/battle_scene.tscn"
@@ -98,9 +123,13 @@ func _spawn_enemies() -> void:
 		_enemy_positions.append(spawn_pos)
 		_enemy_fire_cooldowns.append(0.0)
 		_enemy_hp.append(_ENEMY_HP)
+		_enemy_contact_cooldowns.append(0.0)
 
 func _process(delta: float) -> void:
-	if _is_dead or _is_paused:
+	if _is_dead:
+		_tick_gameover_countdown(delta)
+		return
+	if _is_paused:
 		return
 	
 	_handle_player_movement(delta)
@@ -163,39 +192,102 @@ func _move_projectiles(delta: float) -> void:
 func _check_player_collision() -> void:
 	if _is_invincible:
 		return
-	for i: int in range(_projectile_positions.size()):
+	var i: int = _projectile_positions.size() - 1
+	while i >= 0:
 		var dist: float = _player_position.distance_to(_projectile_positions[i])
 		if dist < _PLAYER_RADIUS + _PROJECTILE_RADIUS:
-			_on_player_death()
-			return
+			_player_hp -= 1
+			_update_hp_label()
+			_remove_projectile(i)
+			if _player_hp <= 0:
+				_on_player_death()
+				return
+		i -= 1
+
+func _remove_projectile(i: int) -> void:
+	_projectile_positions.remove_at(i)
+	_projectile_velocities.remove_at(i)
+	_projectile_graze_cooldowns.remove_at(i)
+	_projectile_was_in_graze.remove_at(i)
 
 func _check_enemy_collision() -> void:
 	if _is_invincible:
 		return
 	for i: int in range(_enemy_positions.size()):
+		_enemy_contact_cooldowns[i] = maxf(0.0, _enemy_contact_cooldowns[i] - get_process_delta_time())
 		var dist: float = _player_position.distance_to(_enemy_positions[i])
 		if dist < _PLAYER_RADIUS + _ENEMY_RADIUS:
+			if _enemy_contact_cooldowns[i] > 0.0:
+				var push_dir: Vector2 = (_enemy_positions[i] - _player_position).normalized()
+				_enemy_positions[i] = _player_position + push_dir * (_PLAYER_RADIUS + _ENEMY_RADIUS + 10.0)
+				continue
 			_player_hp -= 1
+			_enemy_contact_cooldowns[i] = 1.0
 			_update_hp_label()
 			if _player_hp <= 0:
 				_on_player_death()
 				return
-			# 碰触后将敌人弹开
 			var push_dir: Vector2 = (_enemy_positions[i] - _player_position).normalized()
 			_enemy_positions[i] = _player_position + push_dir * (_PLAYER_RADIUS + _ENEMY_RADIUS + 10.0)
 
 func _on_player_death() -> void:
 	_is_dead = true
-	instructions.text = "GAME OVER"
-	var t: Tween = create_tween()
-	t.tween_interval(1.5)
-	t.tween_callback(_return_to_main_menu)
+	_gameover_countdown = 10.0
+	ConfigManager.last_scene_path = ""
+	game_over_panel.visible = true
+	confirm_vbox.visible = true
+	result_vbox.visible = false
+	countdown_label.text = "%ds 后自动结算..." % int(_gameover_countdown)
+
+func _tick_gameover_countdown(delta: float) -> void:
+	if not confirm_vbox.visible:
+		return
+	_gameover_countdown -= delta
+	countdown_label.text = "%ds 后自动结算..." % int(ceilf(maxf(0.0, _gameover_countdown)))
+	if _gameover_countdown <= 0.0:
+		_on_gameover_no()
+
+func _on_gameover_yes() -> void:
+	get_tree().reload_current_scene()
+
+func _on_gameover_no() -> void:
+	confirm_vbox.visible = false
+	result_score_label.text = "得分: " + str(_score)
+	result_hp_label.visible = false
+	result_diff_label.text = "难度: " + str(ConfigManager.selected_difficulty)
+	result_vbox.visible = true
+
+func _on_gameover_restart() -> void:
+	get_tree().reload_current_scene()
+
+func _on_gameover_new_game() -> void:
+	var result: int = get_tree().change_scene_to_file("res://Scenes/CharacterSelect/character_select.tscn")
+	if result != OK:
+		push_error("BattleScene: failed to go to character select, error code " + str(result))
+
+func _on_gameover_return_menu() -> void:
+	var result: int = get_tree().change_scene_to_file(_MAIN_MENU_SCENE_PATH)
+	if result != OK:
+		push_error("BattleScene: failed to return to main menu, error code " + str(result))
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("gm_toggle"):
 		get_viewport().set_input_as_handled()
 		ConfigManager.gm_toggled.emit()
 		return
+	if _is_paused:
+		if event.is_action_pressed("ui_up"):
+			get_viewport().set_input_as_handled()
+			_navigate_pause(-1)
+			return
+		if event.is_action_pressed("ui_down"):
+			get_viewport().set_input_as_handled()
+			_navigate_pause(1)
+			return
+		if event.is_action_pressed("ui_accept"):
+			get_viewport().set_input_as_handled()
+			_pause_buttons[_pause_index].pressed.emit()
+			return
 	if event.is_action_pressed("ui_cancel") and not _is_dead:
 		get_viewport().set_input_as_handled()
 		if _is_paused:
@@ -206,10 +298,37 @@ func _input(event: InputEvent) -> void:
 func _pause_game() -> void:
 	_is_paused = true
 	pause_panel.visible = true
+	_pause_index = 0
+	_highlight_pause_button()
 
 func _resume_game() -> void:
 	_is_paused = false
 	pause_panel.visible = false
+	for b: Button in _pause_buttons:
+		b.modulate = Color.WHITE
+
+func _on_give_up() -> void:
+	pause_panel.visible = false
+	for b: Button in _pause_buttons:
+		b.modulate = Color.WHITE
+	_is_paused = false
+	_player_hp = 0
+	_update_hp_label()
+	_on_player_death()
+
+func _highlight_pause_button() -> void:
+	for i: int in range(_pause_buttons.size()):
+		_pause_buttons[i].modulate = Color(0.4, 1.0, 0.4) if i == _pause_index else Color.WHITE
+
+func _navigate_pause(direction: int) -> void:
+	if not _is_paused:
+		return
+	_pause_index += direction
+	if _pause_index < 0:
+		_pause_index = _pause_buttons.size() - 1
+	elif _pause_index >= _pause_buttons.size():
+		_pause_index = 0
+	_highlight_pause_button()
 
 func _return_to_menu_from_pause() -> void:
 	ConfigManager.last_scene_path = "res://Scenes/Battle/battle_scene.tscn"
@@ -278,8 +397,3 @@ func _draw() -> void:
 		var pos: Vector2 = _enemy_positions[i]
 		draw_circle(pos, _ENEMY_RADIUS + 2.0, Color(0.7, 0.2, 0.2, 1.0))
 		draw_circle(pos, _ENEMY_RADIUS, Color(0.9, 0.3, 0.3, 1.0))
-
-func _return_to_main_menu() -> void:
-	var result: int = get_tree().change_scene_to_file(_MAIN_MENU_SCENE_PATH)
-	if result != OK:
-		push_error("BattleScene: failed to return to main menu, error code " + str(result))
